@@ -12,7 +12,6 @@ using System.Web.Http.ModelBinding;
 using FluentValidation;
 using FluentValidation.Internal;
 using FluentValidation.Results;
-using Newtonsoft.Json;
 using RichardLawley.WebApi.OrderedFilters;
 
 namespace RichardLawley.WebApi.FluentValidation
@@ -116,7 +115,7 @@ namespace RichardLawley.WebApi.FluentValidation
                             return false;
                         }
                     }
-                    validationContext.ModelState.AddModelError(key, JsonConvert.SerializeObject(error));
+                    validationContext.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                     isValid = false;
                 }
             }
